@@ -95,9 +95,17 @@ public class Calculator {
             return 1 / num;
         }
         if (newMode.equals(MonoOperatorModes.cos)) {
+            // cos is exactly 0 at 90, 270, ... degrees; avoid tiny floating-point leftovers like 6.12E-17
+            if (num % 90 == 0 && num % 180 != 0) {
+                return 0.0;
+            }
             return Math.cos(Math.toRadians(num));
         }
         if (newMode.equals(MonoOperatorModes.sin)) {
+            // sin is exactly 0 at 0, 180, 360, ... degrees
+            if (num % 180 == 0) {
+                return 0.0;
+            }
             return Math.sin(Math.toRadians(num));
         }
         if (newMode.equals(MonoOperatorModes.tan)) {
@@ -128,4 +136,3 @@ public class Calculator {
     }
 
 }
-
