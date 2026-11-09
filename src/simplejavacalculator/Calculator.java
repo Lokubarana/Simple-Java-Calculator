@@ -95,7 +95,8 @@ public class Calculator {
             return 1 / num;
         }
         if (newMode.equals(MonoOperatorModes.cos)) {
-            return Math.cos(Math.toRadians(num));
+                double radians = Math.toRadians(num);
+               return Math.cos(radians);
         }
         if (newMode.equals(MonoOperatorModes.sin)) {
             return Math.sin(Math.toRadians(num));
